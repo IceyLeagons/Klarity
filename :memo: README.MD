@@ -42,13 +42,13 @@ println(
 ## 💻 Basic usage
 
 To use Klarity, you will first have to install it via your build system of choice. I recommend Gradle.
-```kotlin
+```kts
 repositories {
-    maven { url 'https://www.jitpack.io' }
+    maven("https://www.jitpack.io")
 }
 
 dependencies {
-    implementation 'net.IceyLeagons:Klarity:1.0.0'
+    implementation("net.IceyLeagons:Klarity:1.0.0")
 }
 ```
 
