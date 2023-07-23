@@ -1,5 +1,6 @@
 # 🗺️ Klarity
 ![GitHub release (with filter)](https://img.shields.io/github/v/release/IceyLeagons/Klarity?style=flat-square)
+[![](https://jitpack.io/v/net.iceyleagons/klarity.svg?style=flat-square)](https://jitpack.io/#net.iceyleagons/klarity.svg?style=flat-square)
 ![GitHub issues](https://img.shields.io/github/issues-raw/IceyLeagons/Klarity?style=flat-square)
 ![GitHub](https://img.shields.io/github/license/IceyLeagons/Klarity?style=flat-square)
 ![GitHub Repo stars](https://img.shields.io/github/stars/IceyLeagons/Klarity?style=flat-square)
@@ -48,7 +49,7 @@ repositories {
 }
 
 dependencies {
-    implementation("net.IceyLeagons:Klarity:1.0.0")
+    implementation("net.iceyleagons:klarity:1.0.0")
 }
 ```
 

@@ -5,7 +5,6 @@ plugins {
     kotlin("jvm") version "1.7.21"
     id("org.jetbrains.dokka") version "1.8.20"
     `maven-publish`
-    application
 }
 
 group = "net.iceyleagons"
@@ -43,8 +42,4 @@ publishing {
             from(components["java"])
         }
     }
-}
-
-application {
-    mainClass.set("MainKt")
 }

@@ -9,6 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a5288db4-edfc-4759-aabb-ac85efe03be8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.MD" beforeDir="false" afterPath="$PROJECT_DIR$/README.MD" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -237,7 +238,7 @@
       <workItem from="1690029179629" duration="13099000" />
       <workItem from="1690052794865" duration="2627000" />
       <workItem from="1690116746905" duration="10769000" />
-      <workItem from="1690129315970" duration="100000" />
+      <workItem from="1690129315970" duration="1617000" />
     </task>
     <servers />
   </component>
