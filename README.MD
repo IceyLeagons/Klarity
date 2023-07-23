@@ -165,11 +165,11 @@ Klarity.registerFunction(FunctionProvider { YourFunction(it) })
 ```
 
 # ➕ Contribution
-If you have a great idea for the project, feel free to contribute in the way outlined in CONTRIBUTING.md
+If you have a great idea for the project, feel free to contribute in the way outlined in [CONTRIBUTING.md](https://github.com/IceyLeagons/Klarity/blob/master/CONTRIBUTING.md)
 
 # ⚖️ License
 Klarity is licensed under the terms of MIT License.
-See the actual license inside LICENSE.MD
+See the actual license [here](https://github.com/IceyLeagons/Klarity/blob/master/LICENSE)
 
 # ❤️ Projects using Klarity
 If you want to see your project here, feel free to open an pull request.
