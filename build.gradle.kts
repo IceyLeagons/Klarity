@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    java
     kotlin("jvm") version "1.7.21"
     id("org.jetbrains.dokka") version "1.8.20"
     `maven-publish`
@@ -30,6 +31,18 @@ tasks.withType<KotlinCompile> {
 
 tasks.dokkaHtml {
     outputDirectory.set(File("docs"))
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "net.iceyleagons"
+            artifactId = "klarity"
+            version = "1.0.0"
+
+            from(components["java"])
+        }
+    }
 }
 
 application {
