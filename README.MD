@@ -53,13 +53,20 @@ dependencies {
 }
 ```
 
-After that's done, you will need to register one or more TranslationSources:
-```kotlin
-Klarity.registerSource("en", PropertiesSource(Path.of("en.properties")))
-Klarity.registerSource("hu", PropertiesSource(Path.of("hu.properties")))
+After that's done, you will need to register one or more TranslationSources in the configuration DSL.
+However if you don't want to do it just yet, you don't need to.
+Klarity will just simply use the default values you've provided.
 
-// Or JSON
-Klarity.registerSource("de", JsonSource(Path.of("de.json")))
+```kotlin
+Klarity.configure {
+    sourceManagement {
+        registerSource("en", PropertiesSource(Path.of("en.properties")))
+        registerSource("hu", PropertiesSource(Path.of("hu.properties")))
+
+        // Or JSON
+        registerSource("de", JsonSource(Path.of("de.json")))
+    }
+}
 ```
 
 If that's done, you're ready to go, just use
@@ -70,13 +77,26 @@ val translation = Klarity.translate("path.to.translation", "Default value")
 Klarity.translate("path.to.translation2", "Value is: {param}", mapOf(Pair("param", "something")))
 ```
 
-You can also set the default language, that will be used if it's not defined in Klarity.translate().
-If you don't fancy the scripting language, we don't force it on you, you can also disable that.
+However Klarity provides much more configuration to fine tune it to your use case!
 
 ```kotlin
-Klarity.defaultLanguage = "hu" // (default: en)
-Klarity.scriptingEnabled = false // (default: true)
+Klarity.configure {
+    defaultLanguage("hu") // (default: en)
+    withScriptingEnabled(false) // (default: true)
+    withGlobals {
+        globalParameters {
+            "appName" to "MyApp"
+            "appVersion" to "1.0.0"
+        }
+
+        // Note that prefix and suffix are not parsed for the script!
+        prefix("[MyApp] ")
+        suffix(" [SUFFIX]")
+    }
+}
 ```
+
+There are even more, take a look in Customizing for them :)
 
 ## 📜 Understanding the script
 If you have ever used Excel's formulas, this script will feel very similar.
@@ -135,19 +155,27 @@ Translation sources are responsible for retrieving the strings from whatever sou
 
 To add a custom translation source, just implement the TranslationSource interface and register it via
 ```kotlin
-Klarity.registerSource("language", source)
+Klarity.configure {
+    sourceManagement {
+        registerSource("en", source)
+    }
+}
 ```
 
 ### 📡 Middlewares
 Middlewares are codes that can modify the output of `Klarity.translate()` after the script has been parsed.
-This could be useful to add custom parsing, for example adding color code support in Minecraft plugins.
+This could be useful to add custom parsing, for example adding color code support in Minecraft plugins. Additionally it can do filtering and verification as well. 
 
 Please note, that whatever the middleware outputs will become the output of `Klarity.translate()`. There can also be multiple middlewares, they are
 called in the order of registration. Every middleware will get the output of the previous one as an input.
 
 To create a middleware, implement the KlarityMiddleware interface and register it via
 ```kotlin
-Klarity.registerMiddleware(middleware)
+Klarity.configure {
+    pluginManagement {
+        registerMiddleware(middleware)
+    }
+}
 ```
 
 ### 🔤 Script functions
@@ -162,7 +190,11 @@ called FunctionProvider to do that when creating a new ScriptParser instance.
 To register your own script functions, simply call:
 
 ```kotlin
-Klarity.registerFunction(FunctionProvider { YourFunction(it) })
+Klarity.configure {
+    pluginManagement {
+        registerFunction(FunctionProvider { YourFunction(it) })
+    }
+}
 ```
 
 # ➕ Contribution

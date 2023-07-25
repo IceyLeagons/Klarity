@@ -24,10 +24,6 @@
 
 package net.iceyleagons.klarity
 
-import net.iceyleagons.klarity.api.FunctionProvider
-import net.iceyleagons.klarity.api.KlarityMiddleware
-import net.iceyleagons.klarity.api.TranslationSource
-import net.iceyleagons.klarity.script.functions.DefaultFunctions
 import net.iceyleagons.klarity.script.functions.KlarityFunction
 import net.iceyleagons.klarity.script.parsing.ScriptParser
 import java.util.stream.Collectors
@@ -35,27 +31,19 @@ import java.util.stream.Collectors
 /**
  * Main singleton of Klarity. This is the instance you will interact with.
  *
- * @property sources A mutable map of language codes to translation sources.
- * @property functions A mutable set of function providers that can be used in scripts
- * @property middlewares A mutable list of middlewares that can modify the output of scripts
- * @property defaultLanguage The default language code to use for translations
- * @property scriptingEnabled A flag to enable or disable script parsing
- *
- * @version 1.0.0
+ * @version 1.1.0
  * @author TOTHTOMI
  * @since Jul. 23, 2023
  */
 object Klarity {
 
-    private val sources: MutableMap<String, TranslationSource> = HashMap()
-    private val functions: MutableSet<FunctionProvider> = HashSet(25)
-    private val middlewares: MutableList<KlarityMiddleware> = ArrayList(4)
+    private var config: Configuration = defaultConfig()
 
-    var defaultLanguage = "en"
-    var scriptingEnabled = true
-
-    init {
-        functions.addAll(DefaultFunctions.functions)
+    /**
+     * Configures Klarity
+     */
+    fun configure(initializer: ConfigurationBuilder.() -> Unit) {
+        config = ConfigurationBuilder().apply(initializer).build()
     }
 
     /**
@@ -65,52 +53,20 @@ object Klarity {
      * @param key The key to look up in the translation source
      * @param defaultValue The default value to use if the key is not found
      * @param values The values to pass to the script parser
-     * @param langauge The language code to use for translation
+     * @param language The language code to use for translation
      * @return The translated, parsed and modified string
      */
-    fun translate(key: String, defaultValue: String? = null, values: Map<String, String> = mapOf(), langauge: String = defaultLanguage): String {
-        val rawString = getRawString(key, defaultValue, langauge)
+    fun translate(
+        key: String,
+        defaultValue: String? = null,
+        values: Map<String, String> = mapOf(),
+        language: String = config.defaultLanguage
+    ): String {
+        val rawString = getRawString(key, defaultValue, language)
         val parsed = parseScript(rawString, values)
         val modified = applyMiddlewares(parsed)
 
-        return modified
-    }
-
-    /**
-     * Registers a middleware to the list of middlewares.
-     *
-     * @param middleware The middleware to register
-     * @throws IllegalStateException If the middleware is already registered
-     */
-    fun registerMiddleware(middleware: KlarityMiddleware) {
-        if (middlewares.contains(middleware)) {
-            throw IllegalStateException("Middleware already registered!")
-        }
-
-        middlewares.add(middleware)
-    }
-
-    /**
-     * Registers a translation source for a language code.
-     *
-     * @param language The language code to register
-     * @param source The translation source to register
-     * @throws IllegalStateException If the language code is already registered
-     */
-    fun registerSource(language: String, source: TranslationSource) {
-        if (sources.containsKey(language.lowercase())) {
-            throw IllegalStateException("Language already registered!")
-        }
-        sources[language.lowercase()] = source
-    }
-
-    /**
-     * Registers a function provider to the set of function providers.
-     *
-     * @param functionProvider The function provider to register
-     */
-    fun registerFunction(functionProvider: FunctionProvider) {
-        functions.add(functionProvider)
+        return config.globalConfig.globalPrefix + modified + config.globalConfig.globalSuffix
     }
 
     /**
@@ -121,8 +77,8 @@ object Klarity {
      * @return A map of function names to klarity functions
      */
     fun getFunctions(scriptParser: ScriptParser): Map<String, KlarityFunction> {
-        val functions = functions.map { it.getFunction(scriptParser) }
-        return functions.stream().collect(Collectors.toMap({ it.functionName.lowercase() }, { it } ))
+        val functions = config.pluginConfig.functions.map { it.getFunction(scriptParser) }
+        return functions.stream().collect(Collectors.toMap({ it.functionName.lowercase() }, { it }))
     }
 
     /**
@@ -134,11 +90,12 @@ object Klarity {
      * @return the resulting output
      */
     private fun parseScript(input: String, values: Map<String, String>): String {
-        if (!scriptingEnabled) {
+        if (!config.scriptingEnabled) {
             return input
         }
 
         val scriptParser = ScriptParser()
+        scriptParser.addValues(config.globalConfig.globalParameters)
         scriptParser.addValues(values)
 
         return scriptParser.parseScript(input)
@@ -148,10 +105,11 @@ object Klarity {
      * Applies the modification of the registered middlewares to the input.
      * If there are no middlewares registered, it will return the input.
      *
-     * @param inpit the input
+     * @param input the input
      * @return the resulting output
      */
     private fun applyMiddlewares(input: String): String {
+        val middlewares = config.pluginConfig.middlewares
         if (middlewares.isEmpty())
             return input
 
@@ -170,10 +128,10 @@ object Klarity {
      * @param language the language code
      */
     private fun getRawString(key: String, defaultValue: String?, language: String): String {
-        if (!sources.containsKey(language.lowercase())) {
+        if (!config.sources.containsKey(language.lowercase())) {
             return defaultValue ?: ""
         }
 
-        return sources[language.lowercase()]!!.getRawString(key, defaultValue) ?: defaultValue ?: ""
+        return config.sources[language.lowercase()]!!.getRawString(key, defaultValue) ?: defaultValue ?: ""
     }
 }

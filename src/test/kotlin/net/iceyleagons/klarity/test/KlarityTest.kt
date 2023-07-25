@@ -38,7 +38,11 @@ class KlarityTest {
         @JvmStatic
         @BeforeAll
         fun init() {
-            Klarity.registerSource("en", DefaultValueSource())
+            Klarity.configure {
+                sourceManagement {
+                    registerSource("en", DefaultValueSource())
+                }
+            }
         }
     }
 

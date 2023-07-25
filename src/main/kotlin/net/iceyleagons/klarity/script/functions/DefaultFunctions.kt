@@ -25,6 +25,7 @@
 package net.iceyleagons.klarity.script.functions
 
 import net.iceyleagons.klarity.api.FunctionProvider
+import net.iceyleagons.klarity.script.functions.DefaultFunctions.functions
 import net.iceyleagons.klarity.script.functions.impl.AndFunction
 import net.iceyleagons.klarity.script.functions.impl.IfFunction
 import net.iceyleagons.klarity.script.functions.impl.NotFunction

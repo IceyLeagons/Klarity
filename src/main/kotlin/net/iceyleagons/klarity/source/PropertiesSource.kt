@@ -27,7 +27,7 @@ package net.iceyleagons.klarity.source
 import net.iceyleagons.klarity.api.TranslationSource
 import java.nio.file.Files
 import java.nio.file.Path
-import java.util.Properties
+import java.util.*
 
 /**
  * A [TranslationSource] that reads and writes key-value pairs from a properties file.

@@ -8,9 +8,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a5288db4-edfc-4759-aabb-ac85efe03be8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/net/iceyleagons/klarity/ConfigurationBuilder.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.MD" beforeDir="false" afterPath="$PROJECT_DIR$/README.MD" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/net/iceyleagons/klarity/Klarity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/net/iceyleagons/klarity/Klarity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/net/iceyleagons/klarity/script/functions/DefaultFunctions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/net/iceyleagons/klarity/script/functions/DefaultFunctions.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/net/iceyleagons/klarity/source/PropertiesSource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/net/iceyleagons/klarity/source/PropertiesSource.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/net/iceyleagons/klarity/test/KlarityTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/net/iceyleagons/klarity/test/KlarityTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,9 +80,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin Object" />
         <option value="Kotlin Interface" />
         <option value="Kotlin Class" />
+        <option value="Kotlin Object" />
       </list>
     </option>
   </component>
@@ -89,22 +95,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/TOTHT/Documents/personal/klarity",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "copyright",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/TOTHT/Documents/personal/klarity&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;copyright&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\TOTHT\Documents\personal\klarity" />
@@ -123,7 +129,7 @@
       <recent name="net.iceyleagons.klarity.script.functions.impl.checks" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.klarity [publishToMavenLocal]">
+  <component name="RunManager" selected="Gradle.KlarityTest">
     <configuration name="KlarityTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -219,10 +225,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.klarity [publishToMavenLocal]" />
-        <item itemvalue="Gradle.klarity [build]" />
-        <item itemvalue="Gradle.klarity [dokkaHtml]" />
         <item itemvalue="Gradle.KlarityTest" />
+        <item itemvalue="Gradle.klarity [build]" />
+        <item itemvalue="Gradle.klarity [publishToMavenLocal]" />
+        <item itemvalue="Gradle.klarity [dokkaHtml]" />
         <item itemvalue="Kotlin.TestKt" />
       </list>
     </recent_temporary>
@@ -238,7 +244,8 @@
       <workItem from="1690029179629" duration="13099000" />
       <workItem from="1690052794865" duration="2627000" />
       <workItem from="1690116746905" duration="10769000" />
-      <workItem from="1690129315970" duration="1617000" />
+      <workItem from="1690129315970" duration="1657000" />
+      <workItem from="1690286721080" duration="4878000" />
     </task>
     <servers />
   </component>
