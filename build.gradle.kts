@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "net.iceyleagons"
-version = "2.0.0"
+version = "2.0.1"
 
 repositories {
     mavenCentral()
@@ -74,7 +74,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "net.iceyleagons"
             artifactId = "klarity"
-            version = "2.0.0"
+            version = "2.0.1"
 
             from(components["java"])
         }
