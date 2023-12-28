@@ -3,6 +3,9 @@ package sources
 import net.iceyleagons.klarity.api.TranslationSource
 import kotlin.js.Json
 
+@JsExport
+@JsName("JsonSource")
+@OptIn(ExperimentalJsExport::class)
 class JsonSource(val root: Json) : TranslationSource {
 
     /**

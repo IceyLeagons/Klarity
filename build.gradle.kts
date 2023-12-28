@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.ir.backend.js.compileIr
+
 plugins {
     kotlin("multiplatform") version "1.9.0"
     id("org.jetbrains.dokka") version "1.8.20"
@@ -12,7 +14,6 @@ repositories {
     mavenCentral()
 }
 
-
 kotlin {
     jvm {
         compilations.all {
@@ -24,6 +25,17 @@ kotlin {
         }
     }
     js {
+        compilations["main"].packageJson {
+            customField("repository", mapOf(
+                "type" to "git",
+                "url" to "https://github.com/IceyLeagons/Klarity"
+            ))
+            customField("author", "IceyLeagons")
+            customField("license", "MIT")
+            customField("keywords", arrayOf("i18n", "klarity", "internalization", "library", "kotlin multiplatform", "multiplatform"))
+            customField("description", "Klarity is a lightweight internalization library for the Kotlin programming language, with support for JavaScript thanks to Kotlin Multiplatform. It makes it super easy to create multi-lingual projects.")
+        }
+
         nodejs()
         generateTypeScriptDefinitions()
         binaries.library()
