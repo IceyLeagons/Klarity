@@ -1,0 +1,38 @@
+# Automatic build and test
+name: "Klarity CI"
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: "Build with JDK ${{ matrix.java-version }}"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # Use 11 LTS releases and the latest one
+        java-version: [ 11, 19 ]
+    steps:
+    - name: "Checkout repository"
+      uses: actions/checkout@v3
+
+    - name: "Validate gradle wrapper"
+      uses: gradle/wrapper-validation-action@v1
+
+    - name: "Set up Java ${{ matrix.java-version }}"
+      uses: actions/setup-java@v3
+      with:
+        java-version: "${{ matrix.java-version }}"
+        distribution: "liberica"
+
+    - name: "Grant execute permission for gradlew"
+      run: chmod +x gradlew
+
+    - name: "Gradle build"
+      uses: gradle/gradle-build-action@v2
