@@ -120,14 +120,10 @@ class TraversingFunctionBodyParser {
             throw IllegalStateException("Unexpected end of input at escaping.")
         }
 
-        println(currentIndex)
-        if (ParsingUtils.isSpecialChar(input[currentIndex + 1])) {
+        if (!ParsingUtils.isSpecialChar(input[currentIndex + 1])) {
             currentIndex -= 1
         }
-
-        println(currentIndex)
         currentIndex += 2
-        println(currentIndex)
     }
 
     /**

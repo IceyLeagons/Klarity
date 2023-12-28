@@ -26,6 +26,8 @@ kotlin {
     }
     js {
         compilations["main"].packageJson {
+            name = "@iceyleagons/klarity"
+            private = false
             customField("repository", mapOf(
                 "type" to "git",
                 "url" to "https://github.com/IceyLeagons/Klarity"
