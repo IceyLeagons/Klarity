@@ -26,8 +26,8 @@ package net.iceyleagons.klarity
 
 import net.iceyleagons.klarity.api.Configuration
 import net.iceyleagons.klarity.api.defaultConfig
-import net.iceyleagons.klarity.script.functions.KlarityFunction
-import net.iceyleagons.klarity.script.parsing.ScriptParser
+import net.iceyleagons.klarity.script.KlarityFunction
+import net.iceyleagons.klarity.script.ScriptParser
 
 /**
  * Main singleton of Klarity. This is the instance you will interact with.
@@ -66,18 +66,6 @@ object KlarityAPI {
     }
 
     /**
-     * Returns a map of function names to klarity functions from the function providers.
-     * Internal use only, used by ScriptParser instances!
-     *
-     * @param scriptParser The script parser to pass to the function providers
-     * @return A map of function names to klarity functions
-     */
-    fun getFunctions(scriptParser: ScriptParser): Map<String, KlarityFunction> {
-        val functions = config.pluginConfig.functions.map { it.getFunction(scriptParser) }
-        return functions.associateBy { it.functionName.lowercase() }
-    }
-
-    /**
      * Parses a string as a script using a script parser with the given values.
      * If scripting is not enabled it will just return the input.
      *
@@ -90,11 +78,19 @@ object KlarityAPI {
             return input
         }
 
-        val scriptParser = ScriptParser()
-        scriptParser.addValues(config.globalConfig.globalParameters)
-        scriptParser.addValues(values)
+        val scriptParser = ScriptParser(config.pluginConfig.functions, concat(config.globalConfig.globalParameters, values))
+        return scriptParser.parse(input)
+    }
 
-        return scriptParser.parseScript(input)
+    /**
+     * Concatenates the given maps into one
+     *
+     * @return the resulting map
+     */
+    private fun concat(vararg map: Map<String, String>): Map<String, String> {
+        val result: MutableMap<String, String> = HashMap()
+        map.forEach(result::putAll)
+        return result
     }
 
     /**

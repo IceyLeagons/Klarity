@@ -76,6 +76,7 @@ val translation = Klarity.translate("path.to.translation", "Default value")
 // Or with parameters
 Klarity.translate("path.to.translation2", "Value is: {param}", mapOf(Pair("param", "something")))
 ```
+Please note, that parameters can only be lowercase, but can include numbers!
 
 However Klarity provides much more configuration to fine tune it to your use case!
 
@@ -85,8 +86,8 @@ Klarity.configure {
     withScriptingEnabled(false) // (default: true)
     withGlobals {
         globalParameters {
-            "appName" to "MyApp"
-            "appVersion" to "1.0.0"
+            "appname" to "MyApp"
+            "appversion" to "1.0.0"
         }
 
         // Note that prefix and suffix are not parsed for the script!

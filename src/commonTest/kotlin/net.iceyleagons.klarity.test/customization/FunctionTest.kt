@@ -26,9 +26,9 @@ package net.iceyleagons.klarity.test.customization
 
 import net.iceyleagons.klarity.DefaultValueSource
 import net.iceyleagons.klarity.KlarityAPI
-import net.iceyleagons.klarity.api.FunctionProvider
-import net.iceyleagons.klarity.script.functions.KlarityFunction
-import net.iceyleagons.klarity.script.parsing.ScriptParser
+import net.iceyleagons.klarity.parsers.generated.StringCodeParser
+import net.iceyleagons.klarity.script.KlarityASTVisitor
+import net.iceyleagons.klarity.script.KlarityFunction
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -38,16 +38,16 @@ class FunctionTest {
 
     @BeforeTest
     fun init() {
-        val functionProvider = FunctionProvider { TestFunction(it) }
+        val function = TestFunction()
 
         KlarityAPI.configure {
             sourceManagement {
                 registerSource("en", DefaultValueSource())
             }
             pluginManagement {
-                registerFunction(functionProvider)
+                registerFunction("TEST", function)
                 assertFails {
-                    registerFunction(functionProvider)
+                    registerFunction("TEST", function)
                 }
             }
         }
@@ -62,9 +62,8 @@ class FunctionTest {
     }
 }
 
-class TestFunction(scriptParser: ScriptParser) : KlarityFunction("TEST", scriptParser) {
-
-    override fun parse(input: String): String {
-        return "true"
+class TestFunction : KlarityFunction {
+    override fun parse(ctx: StringCodeParser.FunctionContext, visitor: KlarityASTVisitor): String {
+        return true.toStringRepresentation()
     }
 }

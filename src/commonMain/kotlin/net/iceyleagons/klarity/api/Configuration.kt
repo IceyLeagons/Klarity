@@ -1,6 +1,7 @@
 package net.iceyleagons.klarity.api
 
 import net.iceyleagons.klarity.KlarityAPI
+import net.iceyleagons.klarity.script.KlarityFunction
 
 /**
  * Data class holding the configuration for Klarity.
@@ -46,11 +47,11 @@ data class GlobalConfig(val globalPrefix: String, val globalSuffix: String, val 
  * @author TOTHTOMI
  * @since Jul. 25, 2023
  */
-data class PluginConfig(val middlewares: MutableList<KlarityMiddleware>, val functions: MutableSet<FunctionProvider>)
+data class PluginConfig(val middlewares: MutableList<KlarityMiddleware>, val functions: MutableMap<String, KlarityFunction>)
 
 /**
  * @return a Configuration with default values
  */
 fun defaultConfig(): Configuration {
-    return Configuration("en", true, GlobalConfig("", "", mutableMapOf()), PluginConfig(mutableListOf(), mutableSetOf()), mutableMapOf())
+    return Configuration("en", true, GlobalConfig("", "", mutableMapOf()), PluginConfig(mutableListOf(), mutableMapOf()), mutableMapOf())
 }

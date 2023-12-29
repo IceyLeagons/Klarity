@@ -25,7 +25,8 @@
 package net.iceyleagons.klarity
 
 import net.iceyleagons.klarity.api.*
-import net.iceyleagons.klarity.script.functions.DefaultFunctions
+import net.iceyleagons.klarity.script.DefaultFunctions
+import net.iceyleagons.klarity.script.KlarityFunction
 
 /**
  * A builder class for creating a [Configuration] object.
@@ -328,10 +329,10 @@ class SourceManagement {
 class PluginManagementConfigurationBuilder {
 
     private val middlewares = mutableListOf<KlarityMiddleware>()
-    private val functions = mutableSetOf<FunctionProvider>()
+    private val functions = mutableMapOf<String, KlarityFunction>()
 
     init {
-        functions.addAll(DefaultFunctions.functions)
+        functions.putAll(DefaultFunctions.get())
     }
 
     /**
@@ -358,12 +359,12 @@ class PluginManagementConfigurationBuilder {
      * @param functionProvider a [FunctionProvider] object representing the function provider to register.
      * @throws IllegalStateException if the function provider is already registered in the set.
      */
-    fun registerFunction(middleware: FunctionProvider) {
-        if (this.functions.contains(middleware)) {
+    fun registerFunction(name: String, function: KlarityFunction) {
+        if (this.functions.containsKey(name)) {
             throw IllegalStateException("Function already registered!")
         }
 
-        this.functions.add(middleware)
+        this.functions[name] = function
     }
 
     /**

@@ -1,6 +1,5 @@
-import kotlinx.js.JsMap
-import kotlinx.js.Object
-import kotlinx.js.iterator
+import js.collections.MapLike
+import js.core.Object
 import net.iceyleagons.klarity.ConfigurationBuilder
 import net.iceyleagons.klarity.KlarityAPI
 import net.iceyleagons.klarity.api.KlarityMiddleware
@@ -40,7 +39,7 @@ object KlarityJS {
                 }
 
                 globals["globalParameters"]?.let {
-                    val params = it as JsMap<String, String>
+                    val params = it as MapLike<String, String>
                     this.globalParameters(toMap(params))
                 }
             }

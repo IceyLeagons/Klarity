@@ -40,10 +40,10 @@ class ScriptTest {
             }
             withGlobals {
                 globalParameters {
-                    "globalA" to "YES"
+                    "globala" to "YES"
                 }
-                globalParameter("globalB", "YES2")
-                globalParameters(mapOf("globalC" to "YES3"))
+                globalParameter("globalb", "YES2")
+                globalParameters(mapOf("globalc" to "YES3"))
             }
         }
     }
@@ -51,7 +51,7 @@ class ScriptTest {
     @Test
     fun testGlobalParameter() {
         val expected = "Works: YES YES2 YES3"
-        val actual = KlarityAPI.translate("test", "Works: {globalA} {globalB} {globalC}")
+        val actual = KlarityAPI.translate("test", "Works: {globala} {globalb} {globalc}")
 
         assertEquals(expected, actual)
     }
