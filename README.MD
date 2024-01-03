@@ -45,11 +45,11 @@ println(
 To use Klarity, you will first have to install it via your build system of choice. I recommend Gradle.
 ```kts
 repositories {
-    maven("https://www.jitpack.io")
+    maven("https://jitpack.io")
 }
 
 dependencies {
-    implementation("net.iceyleagons:klarity:1.0.0")
+    	implementation("net.iceyleagons.Klarity:klarity:2.1.0")
 }
 ```
 
