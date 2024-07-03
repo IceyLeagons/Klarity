@@ -1,0 +1,4 @@
+
+qkotlin:S1481Z",Remove this unused "entries" local variable.(Ø¡´±8á»ëÌ‡2J$58601e16-14a8-4d8b-9d00-094907d4868c
+Çkotlin:S6532="Replace this if expression with check(!(KlarityAPI.config.sources.containsKey(languageCode))) { "Language already registered!" }.( ’ı²8â»ëÌ‡2J$de016914-52fc-42a9-a533-73ea53a8d85d
+Úkotlin:S6532K"Replace this if expression with check(!(KlarityAPI.config.pluginConfig.middlewares.contains(middleware))) { "Middleware already registered!" }.(“†–Šüÿÿÿÿ8â»ëÌ‡2J$1722df69-ea35-4e80-89bf-05804a9d0835

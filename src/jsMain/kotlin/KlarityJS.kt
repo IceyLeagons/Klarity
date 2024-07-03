@@ -1,3 +1,4 @@
+import js.collections.JsMap
 import js.collections.MapLike
 import js.core.Object
 import net.iceyleagons.klarity.ConfigurationBuilder
@@ -78,13 +79,8 @@ object KlarityJS {
         KlarityAPI.config.pluginConfig.middlewares.add(middleware)
     }
 
-
-    fun translate(key: String,
-            defaultValue: String? = null,
-            values: Any? = null,
-            language: String = KlarityAPI.config.defaultLanguage): String {
-
-        return KlarityAPI.translate(key, defaultValue, toMap(values), language)
+    fun translate(key: String, defaultValue: String? = null, language: String = KlarityAPI.config.defaultLanguage, values: Any? = null): String {
+        return KlarityAPI.translate(key, defaultValue, language, toMap(values))
     }
 
     private fun toMap(o: Any?): Map<String, String> {

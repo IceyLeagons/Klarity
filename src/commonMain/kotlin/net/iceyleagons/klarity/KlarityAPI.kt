@@ -26,7 +26,6 @@ package net.iceyleagons.klarity
 
 import net.iceyleagons.klarity.api.Configuration
 import net.iceyleagons.klarity.api.defaultConfig
-import net.iceyleagons.klarity.script.KlarityFunction
 import net.iceyleagons.klarity.script.ScriptParser
 
 /**
@@ -54,10 +53,27 @@ object KlarityAPI {
      * @param key The key to look up in the translation source
      * @param defaultValue The default value to use if the key is not found
      * @param values The values to pass to the script parser
+     * @return The translated, parsed and modified string
+     */
+    fun translate(key: String, defaultValue: String? = null, values: Map<String, String> = emptyMap()): String {
+        val rawString = getRawString(key, defaultValue, config.defaultLanguage)
+        val parsed = parseScript(rawString, values)
+        val modified = applyMiddlewares(parsed)
+
+        return config.globalConfig.globalPrefix + modified + config.globalConfig.globalSuffix
+    }
+
+    /**
+     * Translates a key to a string using the specified language, values and default value.
+     * If scripting is enabled, parses the string as a script and applies the middlewares.
+     *
+     * @param key The key to look up in the translation source
+     * @param defaultValue The default value to use if the key is not found
+     * @param values The values to pass to the script parser
      * @param language The language code to use for translation
      * @return The translated, parsed and modified string
      */
-    fun translate(key: String, defaultValue: String? = null, values: Map<String, String> = emptyMap(), language: String = config.defaultLanguage): String {
+    fun translate(key: String, defaultValue: String? = null, language: String = config.defaultLanguage, values: Map<String, String> = emptyMap()): String {
         val rawString = getRawString(key, defaultValue, language)
         val parsed = parseScript(rawString, values)
         val modified = applyMiddlewares(parsed)

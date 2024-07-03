@@ -19,10 +19,23 @@ object Klarity {
      * @param key The key to look up in the translation source
      * @param defaultValue The default value to use if the key is not found
      * @param values The values to pass to the script parser
+     * @return The translated, parsed and modified string
+     */
+    fun translate(key: String, defaultValue: String?, values: Map<String, String> = mapOf()): String {
+        return KlarityAPI.translate(key, defaultValue, values)
+    }
+
+    /**
+     * Translates a key to a string using the specified language, values and default value.
+     * If scripting is enabled, parses the string as a script and applies the middlewares.
+     *
+     * @param key The key to look up in the translation source
+     * @param defaultValue The default value to use if the key is not found
+     * @param values The values to pass to the script parser
      * @param language The language code to use for translation
      * @return The translated, parsed and modified string
      */
-    fun translate(key: String, defaultValue: String?, values: Map<String, String> = mapOf(), language: String = KlarityAPI.config.defaultLanguage): String {
-        return KlarityAPI.translate(key, defaultValue, values, language)
+    fun translate(key: String, defaultValue: String?, language: String = KlarityAPI.config.defaultLanguage, values: Map<String, String> = mapOf()): String {
+        return KlarityAPI.translate(key, defaultValue, language, values)
     }
 }
