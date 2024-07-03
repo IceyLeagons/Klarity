@@ -18,3 +18,5 @@ Jsrc/commonTest/kotlin/net.iceyleagons.klarity.test/script/FunctionTests.kt,a\a
 Psrc/commonTest/kotlin/net.iceyleagons.klarity.test/customization/FunctionTest.kt,d\6\d6e03dd43132382713e78b0ec9e60152a991acf6
 S
 #src/jsTest/kotlin/JavaScriptTest.kt,c\8\c8ab9e48471fb6a2a545b3e6616a6275e7430072
+@
+build.gradle.kts,d\b\dbcff70658daf80b53ce624f6adcaa529df5ed8d

@@ -10,7 +10,7 @@ plugins {
     `maven-publish`
 }
 
-val klarityVersion = "2.1.0"
+val klarityVersion = "2.1.1"
 
 group = "net.iceyleagons"
 version = klarityVersion
